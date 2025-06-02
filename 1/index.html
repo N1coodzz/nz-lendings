@@ -103,5 +103,13 @@
   <footer>
     <p>18+ only. Gamble responsibly. This page complies with CPA program terms and does not operate as a gambling provider.</p>
   </footer>
+    <script>
+    const params = new URLSearchParams(window.location.search);
+    const content = params.get('utm_content');
+    if (content) {
+      localStorage.setItem('utm_content', content);
+      console.log('UTM Content Saved:', content);
+    }
+  </script>
 </body>
 </html>
