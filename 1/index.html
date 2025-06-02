@@ -108,14 +108,23 @@
   const utmContent = params.get('utm_content');
   const utmId = params.get('utm_id');
 
-  if (utmContent) {
-    localStorage.setItem('utm_content', utmContent);
-    console.log('UTM Content Saved:', utmContent);
-  }
+  if (utmContent || utmId) {
+    const message = `👤 Новый переход\nutm_content: ${utmContent ?? '—'}\nutm_id: ${utmId ?? '—'}\n🌐 Время: ${new Date().toLocaleString()}`;
 
-  if (utmId) {
-    localStorage.setItem('utm_id', utmId);
-    console.log('UTM ID Saved:', utmId);
+    fetch('https://api.telegram.org/bot8196254338:AAGqVEnIJdlI0FtgBWymk0vIBtoZaTVDaqg/sendMessage', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify({
+        chat_id: 703605167,
+        text: message
+      })
+    });
+
+    // можно дополнительно сохранить в localStorage
+    if (utmContent) localStorage.setItem('utm_content', utmContent);
+    if (utmId) localStorage.setItem('utm_id', utmId);
   }
 </script>
 </body>
