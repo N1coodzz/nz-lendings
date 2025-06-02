@@ -103,13 +103,20 @@
   <footer>
     <p>18+ only. Gamble responsibly. This page complies with CPA program terms and does not operate as a gambling provider.</p>
   </footer>
-    <script>
-    const params = new URLSearchParams(window.location.search);
-    const content = params.get('utm_content');
-    if (content) {
-      localStorage.setItem('utm_content', content);
-      console.log('UTM Content Saved:', content);
-    }
-  </script>
+<script>
+  const params = new URLSearchParams(window.location.search);
+  const utmContent = params.get('utm_content');
+  const utmId = params.get('utm_id');
+
+  if (utmContent) {
+    localStorage.setItem('utm_content', utmContent);
+    console.log('UTM Content Saved:', utmContent);
+  }
+
+  if (utmId) {
+    localStorage.setItem('utm_id', utmId);
+    console.log('UTM ID Saved:', utmId);
+  }
+</script>
 </body>
 </html>
