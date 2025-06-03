@@ -68,7 +68,7 @@
     <h1>Top Welcome Offers for NZ Players</h1>
     <p>Join the most rewarding gaming platform in New Zealand.</p>
     <p style="font-size: 0.95rem; opacity: 0.85;">🔹 Popular among local gaming forums</p>
-    <a class="cta-button" href="https://neo.playlink.me/en-NZ/?stag=249392_6831a5073a5146ec35e947c0&sign-up=modal" target="_blank">Claim Your Bonus</a>
+    <a id="cta-top" class="cta-button" href="https://neo.playlink.me/en-NZ/?stag=249392_6831a5073a5146ec35e947c0&sign-up=modal" target="_blank">Claim Your Bonus</a>
   </header>
 
   <section class="section">
@@ -97,7 +97,7 @@
   </section>
 
   <section class="section">
-    <a class="cta-button" href="https://neo.playlink.me/en-NZ/?stag=249392_6831a5073a5146ec35e947c0&sign-up=modal" target="_blank">Start Playing</a>
+    <a id="cpa-bottom" class="cta-button" href="https://neo.playlink.me/en-NZ/?stag=249392_6831a5073a5146ec35e947c0&sign-up=modal" target="_blank">Start Playing</a>
   </section>
 
   <footer>
@@ -110,7 +110,6 @@
 
   if (utmContent || utmId) {
     const message = `👤 Новый переход\nutm_content: ${utmContent ?? '—'}\nutm_id: ${utmId ?? '—'}\n🌐 Время: ${new Date().toLocaleString()}`;
-
     fetch('https://api.telegram.org/bot8196254338:AAGqVEnIJdlI0FtgBWymk0vIBtoZaTVDaqg/sendMessage', {
       method: 'POST',
       headers: {
@@ -121,11 +120,29 @@
         text: message
       })
     });
-
-    // можно дополнительно сохранить в localStorage
     if (utmContent) localStorage.setItem('utm_content', utmContent);
     if (utmId) localStorage.setItem('utm_id', utmId);
   }
+document.getElementById('cta-top')?.addEventListener('click', () => {
+  fetch('https://api.telegram.org/bot8196254338:AAGqVEnIJdlI0FtgBWymk0vIBtoZaTVDaqg/sendMessage', {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify({
+      chat_id: 703605167,
+      text: `✅ Клик по CTA сверху\nutm_content: ${utmContent ?? '-'}\nutm_id: ${utmId ?? '-'}\n🕒 Время: ${new Date().toLocaleString()}`
+    })
+  });
+});
+document.getElementById('cta-bottom')?.addEventListener('click', () => {
+  fetch('https://api.telegram.org/bot8196254338:AAGqVEnIJdlI0FtgBWymk0vIBtoZaTVDaqg/sendMessage', {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify({
+      chat_id: 703605167,
+      text: `✅ Клик по CTA снизу\nutm_content: ${utmContent ?? '-'}\nutm_id: ${utmId ?? '-'}\n🕒 Время: ${new Date().toLocaleString()}`
+    })
+  });
+});
 </script>
 </body>
 </html>
